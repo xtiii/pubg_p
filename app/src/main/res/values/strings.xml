@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PUBG 画质助手</string>
+	<string name="About_us">关于我们</string>
+    <string name="hello_world">Hello world!</string>
+	<string name="Check_update">检查更新</string>
+
+</resources>
