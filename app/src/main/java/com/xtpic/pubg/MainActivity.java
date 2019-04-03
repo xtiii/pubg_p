@@ -11,13 +11,22 @@ import java.util.concurrent.locks.*;
 
 public class MainActivity extends Activity 
 {
+
+	static String timeStamp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+		//获取当前时间戳
+		long longtime = System.currentTimeMillis()/1000;
+		timeStamp = String.valueOf(longtime);
+		//获取画质代码
+		getPicCode(timeStamp);
     }
 
+	//右上角菜单
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		// TODO: Implement this method
@@ -25,7 +34,7 @@ public class MainActivity extends Activity
 		return true;
 	}
 
-	String timeStamp;
+	//右上角菜单列表点击事件
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -36,6 +45,7 @@ public class MainActivity extends Activity
 				//获取当前时间戳
 				long longtime = System.currentTimeMillis()/1000;
 				timeStamp = String.valueOf(longtime);
+				//检查更新类
 				getCode(timeStamp);
 				break;
 			case R.id.About_us:
@@ -47,7 +57,33 @@ public class MainActivity extends Activity
 		return true;
 	}
 
-	private void getCode(final String timeStamp)
+	private void getPicCode(String timeStamp)
+	{
+		// TODO: Implement this method
+		final String url="http://hkss.yes1.cn/ajax.php";
+		final String timeStamps = "act=subject" + "&utime=" + timeStamp;
+		new Thread(){
+
+			@Override
+			public void run()
+			{
+				try
+				{
+					String result = PostService.getHtml(url,timeStamps);
+					Message msg = new Message();
+					msg.obj = result;
+					handler.sendMessage(msg);
+				}
+				catch (Exception e)
+				{
+
+				}
+			}
+
+		}.start();
+	}
+
+	private void getCode(String timeStamp)
 	{
 		// TODO: Implement this method
 		final String url="http://hkss.yes1.cn/ajax.php";
