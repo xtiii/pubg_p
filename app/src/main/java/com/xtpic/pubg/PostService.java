@@ -32,7 +32,11 @@ public class PostService
 			inStream.close();
 			return html;
 		}
-		return null;
+		else
+		{
+			String codes = String.valueOf(code);
+			return "请求失败，错误代码：" + codes;
+		}
 	}
-
+	
 }
