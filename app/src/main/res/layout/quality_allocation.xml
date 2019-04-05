@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center"
+	android:orientation="vertical">
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:weightSum="1.0">
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="50dp">
+
+			<Switch
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:text="画质代码锁定（需要ROOT权限）"
+				android:textSize="15sp"
+				android:paddingRight="15dp"
+				android:paddingLeft="15dp"
+				android:id="@+id/sw1"/>
+
+		</LinearLayout>
+
+		<EditText
+			android:layout_width="match_parent"
+			android:ems="10"
+			android:layout_height="match_parent"
+			android:background="#00B0FF"
+			android:layout_weight="1.0"
+			android:gravity="start"
+			android:editable="false"
+			android:textColor="#FFFFFF"
+			android:id="@+id/ed1"
+			android:textSize="15sp"/>
+
+		<Button
+			android:layout_width="match_parent"
+			android:layout_height="60dp"
+			android:text="更改画质"
+			android:layout_weight="1.0"
+			android:textStyle="bold"
+			android:id="@+id/bt1"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+
