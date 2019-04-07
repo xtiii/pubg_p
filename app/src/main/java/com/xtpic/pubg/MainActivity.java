@@ -22,7 +22,7 @@ public class MainActivity extends Activity
 	static String[] Title;
 	static String timeStamp;
 	static String title;
-	static String Banben = "0.3";
+	static String Banben = "0.5_beta";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

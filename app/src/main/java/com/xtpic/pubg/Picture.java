@@ -81,20 +81,16 @@ public class Picture extends Activity
 				public void onClick(View p1)
 				{
 					// TODO: Implement this method
-					String PicCode = ed1.getText().toString();
+					String PicCodes = ed1.getText().toString();
 					File file = new File("/storage/emulated/0/Android/data/com.tencent.tmgp.pubgmhd/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/Config/Android/", "UserCustom.ini");
-					try
-					{
-						FileOutputStream outStream = new FileOutputStream(file);
-						outStream.write(PicCode.getBytes());
-						outStream.close();
-						Toast.makeText(Picture.this,"修改成功",0).show();
+					String UserCode = readUserComtom(file);
+					if (UserCode == "false"){
+						Toast.makeText(Picture.this,"画质配置不存在，请先运行一遍刺激战场",0).show();
+						return;
 					}
-					catch (IOException e)
-					{
-						Log.e("Pubg 画质助手",e.toString());
-						Toast.makeText(Picture.this,"修改失败，请先解除画质锁定",0).show();
-					}
+					String picCode = UserCode.substring(0, UserCode.indexOf("[UserCustom DeviceProfile]"));
+					String PicCode = picCode + PicCodes;
+					writeUserComtom(PicCode, file);
 				}
 			});
 	}
@@ -133,7 +129,7 @@ public class Picture extends Activity
 			}
 			catch (IOException e)
 			{
-
+				Log.e("Pubg 画质助手",e.toString());
 			}
 		}
 	}
@@ -173,4 +169,52 @@ public class Picture extends Activity
 			ed1.setText(result);
 		}
 	};
+
+	//读取画质代码的备份段
+	private String readUserComtom(File file)
+	{
+		// TODO: Implement this method
+		String str = null;
+		try
+		{
+			InputStream is = new FileInputStream(file);
+			InputStreamReader input = new InputStreamReader(is);
+			BufferedReader reader = new BufferedReader(input);
+			StringBuilder sb = new StringBuilder("");
+			while ((str = reader.readLine()) != null)
+			{
+				sb.append(str);
+				sb.append("\n");
+			}
+			return sb.toString();
+		}
+		catch (FileNotFoundException e)
+		{
+			Log.e("Pubg 画质助手", e.toString());
+			return "false";
+		}
+		catch (IOException e)
+		{
+			Log.e("Pubg 画质助手", e.toString());
+			return "false";
+		}
+	}
+
+	//写入画质代码的主段
+	private void writeUserComtom(String PicCode, File file)
+	{
+		// TODO: Implement this method
+		try
+		{
+			FileOutputStream outStream = new FileOutputStream(file);
+			outStream.write(PicCode.getBytes());
+			outStream.close();
+			Toast.makeText(Picture.this, "修改成功", 0).show();
+		}
+		catch (IOException e)
+		{
+			Log.e("Pubg 画质助手", e.toString());
+			Toast.makeText(Picture.this, "修改失败，请先解除画质锁定", 0).show();
+		}
+	}
 }

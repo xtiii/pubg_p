@@ -10,7 +10,7 @@ case 'upapp':
 		$utime=isset($_POST['utime'])?$_POST['utime']:null;
 		if($stime == $utime || $stime == $utime+1 || $stime == $utime+2){
 		//Force为强制更新开关1为强制0为不强制
-		exit('{"Code":1,"Msg":"OK","Edition":"0.3","Force":0,"Date":"2019-04-04","Body":[{"Title":"【更新】正在完善中..."},{"Title":"【预计】在 2019-04-08 完成基本功能。"}]}');
+		exit('{"Code":1,"Msg":"OK","Edition":"0.5_beta","Force":0,"Date":"2019-04-07","Body":[{"Title":"【功能】正在完善中..."},{"Title":"【预计】在 2019-04-08 完成基本功能。"}]}');
 		}else{
 		exit('{"Code":-1,"Msg":"No Parameter"}');
 		}
