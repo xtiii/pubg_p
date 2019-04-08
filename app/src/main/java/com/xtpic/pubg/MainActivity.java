@@ -22,7 +22,8 @@ public class MainActivity extends Activity
 	static String[] Title;
 	static String timeStamp;
 	static String title;
-	static String Banben = "0.5_beta";
+	static String Banben = "0.6_beta";
+	static String Urls = "http://pubg.xtss.tk/ajax.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,7 +60,7 @@ public class MainActivity extends Activity
 	private void UpgetCode(String timeStamp)
 	{
 		// TODO: Implement this method
-		final String url="http://hkss.yes1.cn/ajax.php";
+		final String url = Urls;
 		final String timeStamps = "act=upapp" + "&utime=" + timeStamp;
 		new Thread(){
 
@@ -118,7 +119,7 @@ public class MainActivity extends Activity
 	private void getPicCode()
 	{
 		// TODO: Implement this method
-		final String url="http://hkss.yes1.cn/ajax.php";
+		final String url = Urls;
 		final String timeStamps = "act=subject" + "&utime=hello";
 		new Thread(){
 
@@ -145,7 +146,7 @@ public class MainActivity extends Activity
 	private void getCode(String timeStamp)
 	{
 		// TODO: Implement this method
-		final String url="http://hkss.yes1.cn/ajax.php";
+		final String url = Urls;
 		final String timeStamps = "act=upapp" + "&utime=" + timeStamp;
 		new Thread(){
 
@@ -188,6 +189,7 @@ public class MainActivity extends Activity
 				JSONObject ajax = new JSONObject(result);
 				String Edition = ajax.getString("Edition");
 				String code = String.valueOf(ajax.getInt("Code"));
+				String Dlinks = ajax.getString("Dlinks");
 				if (Edition.equals(Banben))
 				{
 					Log.e("Pubg 画质助手","已经是最新版本");
@@ -231,7 +233,7 @@ public class MainActivity extends Activity
 							});
 					}
 					JSONArray array = ajax.getJSONArray("Body");
-					title = "更新日期：" + ajax.getString("Date") + "\n";
+					title = "更新日期：" + ajax.getString("Date") + "\n" + "下载地址：" + Dlinks + "\n";;
 					for (int i = 0; i < array.length(); i++)
 					{
 						JSONObject item = array.getJSONObject(i);
@@ -273,6 +275,7 @@ public class MainActivity extends Activity
 				{
 					String Edition = ajax.getString("Edition");
 					String Force = String.valueOf(ajax.getInt("Force"));
+					String Dlinks = ajax.getString("Dlinks");
 					if (Edition.equals(Banben))
 					{
 						Toast.makeText(MainActivity.this, "已经是最新版本", 0).show();
@@ -313,7 +316,7 @@ public class MainActivity extends Activity
 							});
 					}
 					JSONArray array = ajax.getJSONArray("Body");
-					title = "更新日期：" + ajax.getString("Date") + "\n";
+					title = "更新日期：" + ajax.getString("Date") + "\n" + "下载地址：" + Dlinks + "\n";
 					for (int i = 0; i < array.length(); i++)
 					{
 						JSONObject item = array.getJSONObject(i);

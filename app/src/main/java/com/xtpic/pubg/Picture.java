@@ -20,6 +20,7 @@ public class Picture extends Activity
 	private Switch sw1;
 	private String cmd;
 	private String listid;
+	static String Urls = "http://pubg.xtss.tk/PicCode/";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -61,7 +62,6 @@ public class Picture extends Activity
 						SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
 						editor.putString("switch", "1");
 						editor.commit();
-						Toast.makeText(Picture.this, fan, 0).show();
 					}
 					else
 					{
@@ -70,7 +70,6 @@ public class Picture extends Activity
 						SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
 						editor.putString("switch", "0");
 						editor.commit();
-						Toast.makeText(Picture.this, fan, 0).show();
 					}
 				}
 			});
@@ -137,7 +136,7 @@ public class Picture extends Activity
 	private void getPicCode(String ListId)
 	{
 		// TODO: Implement this method
-		final String url="http://hkss.yes1.cn/" + ListId + ".html";
+		final String url = Urls + ListId + ".html";
 		new Thread(){
 
 			@Override
