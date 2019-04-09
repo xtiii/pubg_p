@@ -2,13 +2,13 @@ package com.xtpic.pubg;
 
 import android.app.*;
 import android.content.*;
+import android.net.*;
 import android.os.*;
 import android.support.v4.widget.*;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
 import android.widget.AdapterView.*;
-import java.io.*;
 import java.util.*;
 import org.json.*;
 
@@ -22,7 +22,7 @@ public class MainActivity extends Activity
 	static String[] Title;
 	static String timeStamp;
 	static String title;
-	static String Banben = "0.6_beta";
+	static String Banben = "0.7_beta";
 	static String Urls = "http://pubg.xtss.tk/ajax.php";
 
     @Override
@@ -189,7 +189,7 @@ public class MainActivity extends Activity
 				JSONObject ajax = new JSONObject(result);
 				String Edition = ajax.getString("Edition");
 				String code = String.valueOf(ajax.getInt("Code"));
-				String Dlinks = ajax.getString("Dlinks");
+				final String Dlinks = ajax.getString("Dlinks");
 				if (Edition.equals(Banben))
 				{
 					Log.e("Pubg 画质助手","已经是最新版本");
@@ -208,6 +208,8 @@ public class MainActivity extends Activity
 								public void onClick(DialogInterface p1, int p2)
 								{
 									// TODO: Implement this method
+									Intent Download = new Intent(Intent.ACTION_VIEW,Uri.parse(Dlinks));
+									startActivity(Download);
 									MainActivity.this.finish();
 								}
 							});
@@ -221,6 +223,8 @@ public class MainActivity extends Activity
 								public void onClick(DialogInterface p1, int p2)
 								{
 									// TODO: Implement this method
+									Intent Download = new Intent(Intent.ACTION_VIEW,Uri.parse(Dlinks));
+									startActivity(Download);
 								}
 							});
 						dialog.setNegativeButton("取消", new DialogInterface.OnClickListener(){
@@ -275,7 +279,7 @@ public class MainActivity extends Activity
 				{
 					String Edition = ajax.getString("Edition");
 					String Force = String.valueOf(ajax.getInt("Force"));
-					String Dlinks = ajax.getString("Dlinks");
+					final String Dlinks = ajax.getString("Dlinks");
 					if (Edition.equals(Banben))
 					{
 						Toast.makeText(MainActivity.this, "已经是最新版本", 0).show();
@@ -291,6 +295,8 @@ public class MainActivity extends Activity
 								public void onClick(DialogInterface p1, int p2)
 								{
 									// TODO: Implement this method
+									Intent Download = new Intent(Intent.ACTION_VIEW,Uri.parse(Dlinks));
+									startActivity(Download);
 									MainActivity.this.finish();
 								}
 							});
@@ -304,6 +310,8 @@ public class MainActivity extends Activity
 								public void onClick(DialogInterface p1, int p2)
 								{
 									// TODO: Implement this method
+									Intent Download = new Intent(Intent.ACTION_VIEW,Uri.parse(Dlinks));
+									startActivity(Download);
 								}
 							});
 						dialog.setNegativeButton("取消", new DialogInterface.OnClickListener(){
